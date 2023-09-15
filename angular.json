@@ -30,6 +30,8 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/toastr/build/toastr.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -68,7 +70,8 @@
               "browserTarget": "relative:build:production"
             },
             "development": {
-              "browserTarget": "relative:build:development"
+              "browserTarget": "relative:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -93,6 +96,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -100,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b0e85502-e9b6-44dc-afd7-1d888cda9579"
   }
 }
