@@ -1,32 +1,10 @@
 .root{
-    width: 100%;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-
-    .divider{
-        width: 100%;
-        height: 1px;
-        background-color: rgb(2, 2, 2);
-
-        margin-bottom: 30px;
-        margin-top: 20px;
+    .chartDiv{
+        position: absolute;
+        top:0;
+        left: 0;
+        width: fit-content;
+        height: fit-content;
+        background-color: aqua;
     }
-
-    p{
-        font-size: 20px;
-        font-family: 'Microsoft YaHei';
-    }
-
-    .pname{
-        color:red;
-    }
-
-    button{
-        margin-top: 30px;
-    }
-}
-
-mat-form-field{
-    margin-bottom: -1em;
 }

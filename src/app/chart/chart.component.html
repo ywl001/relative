@@ -1,0 +1,18 @@
+<div class="root">
+  <div class="btn-container">
+    <button mat-raised-button color="accent" class="btn" (click)="onReload()">重新加载</button>
+    <button mat-raised-button color="primary" class="btn" (click)="onRelayout()">{{layoutName}}</button>
+  </div>
+  <button mat-raised-button color="accent" style="height: 50px;" (click)="onClose()">关闭</button>
+  <pinch-zoom class="pinch-zoom" [limit-zoom]="20" #pinch [style.width.px]="windowWidth"
+    [style.height.px]="windowHeight" [backgroundColor]="'rgba(0,0,0,0.15)'">
+    <div class="chart" #root cdkDrag>
+      <canvas #bgCanvas id="bgCanvas"></canvas>
+      <div #chartDiv id="chartDiv"></div>
+    </div>
+  </pinch-zoom>
+
+
+  
+</div>
+

@@ -1,0 +1,9 @@
+<div class="root">    
+    <div class="base-people" *ngIf="data"> 基准人员：{{data.name}}
+        
+    </div>
+    <div *ngFor="let item of relatives" class="relative-container" (click) = onChageBasePeople(item)>
+        <div class="relative-people">{{item.relativeFlag}}:{{item.name}}</div>
+        <div class="btn-remove" (click)="onBreakRelative(item); $event.stopPropagation()"></div>
+    </div>
+</div>

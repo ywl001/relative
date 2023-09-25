@@ -1,0 +1,40 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #fff;
+    justify-content: space-around;
+}
+
+.btn-container {
+    display: flex;
+}
+
+.btn {
+    margin-bottom: 5px;
+    flex: 1;
+    height: 50px;
+}
+
+.btn:not(:last-child) {
+    margin-right: 3px;
+}
+
+.chart {
+    min-height: 100%;
+    min-width: 100%;
+    cursor: grab;
+    flex: 1;
+    margin-left: 10px;
+
+    transform-origin:left;
+
+    #chartDiv {
+        position: absolute;
+    }
+
+    #bgCanvas {
+        position: absolute;
+    }
+
+}

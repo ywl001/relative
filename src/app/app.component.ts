@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import * as IDValidator from 'id-validator';
-import * as toastr from 'toastr';
-import { SqlService } from './services/sql.service';
-
+import { ChangeDetectorRef, Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ChartComponent } from './chart/chart.component';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -10,60 +9,34 @@ import { SqlService } from './services/sql.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'relative';
 
-  private validator = new IDValidator()
+  isShowChart:boolean;
+  constructor(private message: MessageService, public dialog: MatDialog,    private cdr: ChangeDetectorRef,) { }
 
-  basePid: string = '410306197401270516';
-  pname:string;
-  motherId: string;
-  motherName:string;
-  fatherId: string;
-  fatherName:string;
+  @ViewChild('chartDiv', { static: true,read:ViewContainerRef }) chartDiv: ViewContainerRef;
+  // private dialogRef:MatDialogRef<ChartComponent>;
+  ngOnInit() {
+    this.message.getNodesSuccess$.subscribe(res => {
+      console.log(res);
+      if (res.length > 0) {
+        // this.dialogRef = this.dialog.open(ChartComponent, {
+        //   width: window.innerWidth + 'px',
+        //   height: window.innerHeight + 'px',
+        // });
+        // this.dialogRef.componentInstance.data = res;
+        // this.isShowChart = true;
 
-  private isBaseRight:boolean;
+        let chart = this.chartDiv.createComponent(ChartComponent);
+        chart.instance.data = res;
 
-  constructor(private sql:SqlService,private cdr:ChangeDetectorRef){}
 
+        // this.cdr.markForCheck();
+      }
+    })
 
-  onBasePeopleBlur() {
-    console.log('ssss')
-    if (this.idValidate(this.basePid)) {
-      //服务器拉取数据
-      this.sql.getPeople(this.basePid).subscribe(
-        res=>{
-          if(res.length > 0){
-            const p = res[0];
-            this.pname = res[0].name;
-            if(p.fatherId?.length == 18){
-              this.fatherId = p.fatherId;
-              this.fatherName = '人员父亲身份证号已经设置'
-            }
-
-            if(p.motherId?.length == 18){
-              this.motherId = p.motherId;
-              this.motherName = '人员母亲身份证号已经设置'
-            }
-            this.cdr.markForCheck()
-          }
-        }
-      )
-    }
-  }
-
-  private idValidate(pid: string) {
-    const res = this.validator.isValid(pid);
-    if (!res) {
-      toastr.error('身份证号输入有误')
-    }
-    return res;
-  }
-
-  private getPeopleInfo() {
-
-  }
-
-  onSubmit() {
-
+    // this.message.closeChart$.subscribe(res=>this.dialogRef.close())
+    this.message.closeChart$.subscribe(res=>{
+      this.chartDiv.clear()
+    })
   }
 }

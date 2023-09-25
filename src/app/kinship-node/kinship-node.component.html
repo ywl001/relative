@@ -1,0 +1,11 @@
+<div #root class="root" [style.top.px]="y" [style.left.px]="x" (resized)="onResized($event)"  >
+    <div class="person" *ngIf="data.sibHuman" (click)="onClick(data.sibHuman)">
+        <img #sibHumanImg [src]="sibHumanPhoto" (error)="onImgError($event)"/>
+        <div class="sibHuman">{{data.sibHuman.name}}</div>
+    </div>
+
+    <div class="person" *ngIf="data.spouse" (click)="onClick(data.spouse)">
+        <img #spouseImg [src]="spousePhoto" (error)="onImgError($event)"/>
+        <div>{{data.spouse.name}}</div>
+    </div>
+</div>

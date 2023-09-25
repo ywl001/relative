@@ -1,0 +1,22 @@
+<div class="root">
+    <mat-form-field class="keyword" appearance="outline">
+        <mat-label>{{label}}</mat-label>
+        <input matInput autocomplete="off" [(ngModel)] = keyword [matAutocomplete]="autoHistory"/>
+
+        <mat-autocomplete #autoHistory="matAutocomplete" >
+            <mat-option *ngFor="let option of historys" [value]="option">
+                <div class="history-item">
+                    <div class="history-text">{{option}}</div>
+                    <mat-icon style="margin-left: 10px;"
+                    [svgIcon]="iconClear2" matTooltip="删除" (click)="onRemoveHistoryItme(option)"></mat-icon>
+                </div>
+            </mat-option>
+        </mat-autocomplete>
+
+        <!-- <input matInput autocomplete="off" [(ngModel)] = keyword/> -->
+
+        <mat-icon *ngIf="isShowBtnClear" [svgIcon]="iconClear" matSuffix matTooltip="清除"
+             (click)=onclickBtnClear()></mat-icon>
+    </mat-form-field>
+    <div class="btn-search" (click) = onSumbit()></div>
+</div>

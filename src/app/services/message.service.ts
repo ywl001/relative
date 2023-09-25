@@ -1,18 +1,11 @@
-import { Injectable, Type } from '@angular/core';
-import Point from '@arcgis/core/geometry/Point';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
-
+import { People } from '../mode/Person';
+import { KinshipNode } from '../mode/kinship';
 
 
 export enum MessageType {
-  closeInfowindow = 'closeInfoWindow',
-  startPickMapPoint = 'startMove',
-  refreshMark = 'refreshMark',
-  clickMap = 'clickMap',
-  uploadFile = 'uploadFile',
-  closePeoplePlanel = 'closePeoplePlanel',
-  saveLocation = "saveLocation"
+  refresh = 'refresh',
 }
 
 @Injectable({
@@ -21,22 +14,16 @@ export enum MessageType {
 export class MessageService {
   constructor() {}
 
-  private _showInfoWindow = new Subject<Type<unknown>>();
-  showInfoWindow$ = this._showInfoWindow.asObservable();
-  showInfoWindow<T>(p:Type<T>) {
-    this._showInfoWindow.next(p);
+  private _refresh = new Subject<null>();
+  refresh$ = this._refresh.asObservable();
+  refresh() {
+    this._refresh.next(null);
   }
 
-  private _message = new Subject<MessageType>();
-  message$ = this._message.asObservable();
-  sendMessage(m:MessageType) {
-    this._message.next(m);
-  }
-
-  private _uploadImage = new Subject<any>();
-  uploadImage$ = this._uploadImage.asObservable();
-  uploadImage(uploadData:any) {
-    this._uploadImage.next(uploadData);
+  private _setBasePeople=new Subject<People>();
+  setBasePeople$ = this._setBasePeople.asObservable();
+  setBasePeople(p:People){
+    this._setBasePeople.next(p)
   }
 
   private _reLayoutChart = new Subject();
@@ -45,16 +32,25 @@ export class MessageService {
     this._reLayoutChart.next(null);
   }
 
-  private _getPoint = new Subject<Point>();
-  pickMapPoint$ = this._getPoint.asObservable();
-  pickMapPoint(p:Point) {
-    this._getPoint.next(p);
+  private _getNodesSuccess = new Subject<KinshipNode[]>();
+  getNodesSuccess$ = this._getNodesSuccess.asObservable();
+  getNodesSuccess(data:KinshipNode[]) {
+    this._getNodesSuccess.next(data);
   }
 
-  private _isShowBusyIcon = new Subject<boolean>();
-  isShowBusyIcon$ = this._isShowBusyIcon.asObservable();
-  isShowBusyIcon(isShow:boolean) {
-    this._isShowBusyIcon.next(isShow);
+  private _closeChart = new Subject();
+  closeChart$ = this._closeChart.asObservable();
+  closeChart() {
+    this._closeChart.next(null);
   }
+
+  private _reLoadChart = new Subject();
+  reLoadChart$ = this._reLoadChart.asObservable();
+  reLoadChart() {
+    this._reLoadChart.next(null);
+  }
+
+
+
 }
 

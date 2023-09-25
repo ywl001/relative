@@ -1,4 +1,4 @@
-class StringUtils
+export class StringUtils
 {
 	 /**
      * Represents a failed index search.
@@ -192,7 +192,8 @@ class StringUtils
     public static trimToEmpty(str: string) {
         return str == null ? StringUtils.EMPTY : str.trim();
     }
-	
+
+
 	 /**
      * <p>Replaces a String with another String inside a larger String,
      * for the first <code>max</code> values of the search String.</p>

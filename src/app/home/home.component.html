@@ -1,0 +1,11 @@
+<div class="root">
+    <div class="btn-container">
+        <div class="btn btn-show" (click)="onShowChart()" *ngIf="isShowBtnReset">树状图</div>
+        <div class="btn btn-reset" (click)="onReset()" *ngIf="isShowBtnReset">重置</div>
+    </div>
+    <div class="title" [style.backgroundColor]="titleBg">{{title}}</div>
+    <app-relative-info *ngIf="basePeople" [data]="basePeople"></app-relative-info>
+
+    <div class="divider"></div>
+    <app-people-select (selectedPeople)="onSelectPeople($event)"></app-people-select>
+</div>

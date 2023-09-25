@@ -1,0 +1,72 @@
+.root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    .title {
+        // background: #2B6695;
+        color: #FFFFFF;
+        font-family: "微软雅黑", "宋体", "黑体", Arial;
+        font-size: 20px;
+        font-weight: bold;
+        height: 40px;
+        line-height: 40px;
+        padding: 8px 0 8px 5px;
+        text-shadow: 2px 2px 3px #222222;
+    }
+
+    .title_bg {
+        background: #fd6703;
+    }
+
+    .btn-container {
+        display: flex;
+
+        .btn {
+            height: 50px;
+            flex: 1;
+            border-radius: 0;
+            margin-bottom: 5px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .btn-reset {
+            background-color: #13aa52;
+        }
+
+        .btn-show{
+            background-color: #0a6bff;;
+        }
+
+        .btn:not(:last-child) {
+            margin-right: 3px;
+        }
+
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: rgb(2, 2, 2);
+
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    p {
+        font-size: 20px;
+        font-family: 'Microsoft YaHei';
+    }
+}
+
+mat-form-field {
+    margin-bottom: -1em;
+}
